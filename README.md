@@ -22,6 +22,6 @@ It is also in the model.py program where the number of agents (sheep) can be alt
 may move) and the boundary of the neighbourhood which affects how the agent (sheep) shares its food stores.
 
 For the model to run as a GUI, the graphics settings on the Spyder IPython console should to be set to Tkinter. To do this: go to Tools > Preferences >
-IPython Console > Graphics > Graphics Backend, and in the Backened dropdown list, the backend should be set to Tkinter. Then Restart the console and 
+IPython Console > Graphics > Graphics Backend, and in the Backened dropdown list, the backend should be set to Tkinter. Then restart the console and 
 the GUI should run. After the code has run, and a model box appears, click on Model and a dropdown list should appear with Run or Quit. Choose Run to 
 see the model. 
