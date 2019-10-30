@@ -1,9 +1,12 @@
 # Leeds-Geog-5995
 Agent Based Modelling for Assignment 1 of Leeds 2019 Programming for Social Sciences Module
 
-# This repository contains outputs from the Leeds Programming for Social Sciences Module, which focussed on Agent Based Modelling. 
+## This repository contains outputs from the Leeds Programming for Social Sciences Module, which focussed on Agent Based Modelling. 
 
-The agent based model has been programmed in python, using the platform Spyder. The file, agentframework.py, contains the class which 
+The agent based model has been programmed in python, using the platform Spyder. 
+
+# agentframework.py
+The file, agentframework.py, contains the class which 
 specifically deals with the agents - which represent sheep in this simulation. The agentframework.py defines various functions for the agents 
 (sheep): 
 
@@ -13,6 +16,7 @@ specifically deals with the agents - which represent sheep in this simulation. T
 * to work out the distance (using pythagoras theorem) between nearby sheep and itself
 * to share food stores with nearby sheep within a given neighbourhood area (defined in the model)
 
+# model.py
 The model.py file executes the Agent Based Model, the animation of the model, and displays this with a Graphical User Interface (GUI).
 It is also in the model.py program where the number of agents (sheep) can be altered, along with the number of iterations (times the sheep
 may move) and the boundary of the neighbourhood which affects how the agent (sheep) shares its food stores.
