@@ -15,20 +15,18 @@ import random
 environment = []
 # Read in the text file using the relevant file path and using 
 # the delimiter (,) to separate the values in the file
-f = open("C:/Users/hopeb/OneDrive/Documents/Fourth Year 201920/ENVS802 LEEDS Programming for Social Scientists/in.txt",  newline='')
-    reader = csv.reader(f, quoting = csv.QUOTE_NONNUMERIC)
+with open("C:/Users/hopeb/OneDrive/Documents/Fourth Year 201920/ENVS802 LEEDS Programming for Social Scientists/in.txt") as f:
+    reader = csv.reader(f, delimiter=',', quoting = csv.QUOTE_NONNUMERIC)
     # Create a for-loop to make each row a list in the environment,
     # with each row being filled with values 
     for row in reader:
         # Create an empty variable, environment_row, to store values 
-        environment_row = []
+        rowlist = []
         for value in row:
-            # Use the append function to add values to the rows
-            environment_row.append(int(value))
+            # Use the append function to add values to the rows 
+            rowlist.append(int(value))
         # Append the rowlist to the environment list
-        environment.append(environment_row)
-# Close the text file 
-f.close()
+        environment.append(rowlist)
 
 # Set up an empty list for the agents variable
 agents = []
@@ -82,7 +80,8 @@ def update(frame_number):
     # the animation stops
     total = 0
     for row in range(99):
-        total += environment[row][value]
+        for value in range(99):
+            total += environment[row][value]
     if total <= 0:
         carry_on = False
     print('Stopping condition')
