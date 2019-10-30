@@ -14,12 +14,23 @@ class Agent:
         # Select a random starting point for the agents 
         self.x = random.randint(0, ncols-1)
         self.y = random.randint(0, nrows-1)
+        #self.x = x
+        #if (x == None):
+        #    self.x = random.randint(0, ncols-1)
+        #else:
+        #    self.x = x
+        #self.y = y
+        #if (y == None):
+        #    self.y = random.randint(0, nrows-1)
+        #else:
+        #    self.y=y
         # Set the environment for the agents, which they will eat
         self.environment = environment 
         # Set up a food store for all of the agents, which will be altered as they eat the environment
         self.store = 0
         # Set up an attribute used for sharing food with nearby neighbours
         self.agents = agents 
+
 
 # Move agents with a conditional statement 
     def move(self):
@@ -39,17 +50,21 @@ class Agent:
         if self.environment[self.y][self.x] > 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10 
-
+            
 # Calculate distance between agents using pythagoras theorem
-    def distance_between(self,agent):
-        return (((self.x - agent.x) **2) + ((self.y - agent.y)**2))**0.5
+#    def distance_between(self, agents):
+#        return (((self.x - agents.x) **2) + ((self.y - agents.y)**2))**0.5
+    
+    def distance_between(self, agent):
+        return (((self.x - agent.x) **2) + ((self.y - agent.y)
+                 **2))**0.5
 
-# Defining food sharing between nearby neighbours 
+    # Defining food sharing between nearby neighbours 
     def share(self, neighbourhood):
         # Create a for loop which searches for nearby agents
         for i in range(len(self.agents)):
             # Create a variable, dist, to store distances between each agent and nearby neighbours
-            dist = self.distance_between(i)
+            dist = self.distance_between(self.agents[i])
             # Use a conditional statement to test whether dist is within the neighbourhood
             # boundaries (set in the model)
             if dist <= neighbourhood:
@@ -61,7 +76,7 @@ class Agent:
                 average = round(sum/2)
                 # Test whether this works by printing
                 print(self)
-                print("Sharing with agent", i, "my store", self.store, "their store", self.agents[i])
+                print("Sharing with agent", i, "my store", self.store, "their store", self.agents[i].store)
                 # Give each agent the average between the nearby neighbours
                 self.store = average
                 # Give the neighbouring agent the average store also
