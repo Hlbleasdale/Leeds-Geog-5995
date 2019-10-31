@@ -16,10 +16,6 @@ import agentframework
 import csv
 # Import random library to shuffle the agents in a pseudo-random way
 import random
-# Import imageio library to save images and gifs
-import imageio 
-# Import os functions to aid reading and writing paths - for saving the gif
-import os
 
 # Initialise environment, firstly by creating an empty list
 environment = []
@@ -114,19 +110,6 @@ def update(frame_number):
         carry_on = False
         print ("Stopping condition: all the sheep have eaten enough.")
         
-# Save a gif of the model 
-# First set the filepath    
-png_dir = 'C:/Users/hopeb/OneDrive/Documents/Fourth Year 201920/ENVS802 LEEDS Programming for Social Scientists/Leeds-Geog-5995/'
-# Create an empty list, images, to later store the gif
-images = []
-# Create a for loop to append the resulting gif to the filepath
-for file_name in os.listdir(png_dir):
-    if file_name.endswith('png'):
-        file_path = os.path.join(png_dir, file_name)
-        images.append(imageio.imread(file_path))
-# Set a location and filename for it to save to
-imageio.mimsave('C:/Users/hopeb/OneDrive/Documents/Fourth Year 201920/ENVS802 LEEDS Programming for Social Scientists/Leeds-Geog-5995/FinalModel.gif', images, duration=10, fps=55)
- 
 # Loop the animation until the number of iterations has been met
 # and until the stopping condition is brought in
 def general_function(b = [0]):
