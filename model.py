@@ -35,12 +35,12 @@ with open("C:/Users/hopeb/OneDrive/Documents/Fourth Year 201920/ENVS802 LEEDS Pr
 # Set up an empty list for the agents variable
 agents = []
 # Set the number of agents (sheep) in the model 
-num_of_agents = 50
+num_of_agents = 40
 # Set the number of iterations (times the agents/sheep move)
-num_of_iterations = 20
+num_of_iterations = 100
 # Create a neighbourhood variable to define the distance whereby agents begin
 # interacting with one another
-neighbourhood = 100
+neighbourhood = 10
 
 # Create the agents, using the imported agentframework and append 
 # the agents to the environment
@@ -51,7 +51,7 @@ for i in range(num_of_agents):
 fig = matplotlib.pyplot.figure(figsize=(8, 8))
 ax = fig.add_axes([0, 0, 1, 1])
 
-# Define carry_on to continue running the model ??
+# Define carry_on
 carry_on = True
 
 # Set up the model for the animation
@@ -85,17 +85,21 @@ def update(frame_number):
     matplotlib.pyplot.title("Agent Based Model of Sheep in an Environment", fontsize='x-large')
     matplotlib.pyplot.ylabel("Environment")
     matplotlib.pyplot.xlabel("Environment")
-    
-    #  Create a stopping condition, whereby if the environment is empty,
-    # the animation stops
+        
+    # Once all the sheep have eaten enough, the model stops
     total = 0
-    for row in range(99):
-        for value in range(99):
-            total += environment[row][value]
-    if total <= 0:
+    print(total)
+    for i in range(num_of_agents):
+        agent_full = agents[i].eaten_enough() 
+        if agent_full == 1:
+            total += 1
+            #print("Sheep", agents[i], "has eaten enough, my store is: {}".format(agents[i].store))
+            print("Amount of sheep that have eaten enough:", total)
+            
+    if total == (num_of_agents):
         carry_on = False
-    print('Stopping condition')
-    
+        print ("Stopping condition")
+        
 # Loop the animation until the number of iterations has been met
 # and until the stopping condition is brought in
 def general_function(b = [0]):
@@ -126,7 +130,7 @@ for file_name in os.listdir(png_dir):
         file_path = os.path.join(png_dir, file_name)
         images.append(imageio.imread(file_path))
 # Set a location and filename for it to save to
-imageio.mimsave('C:/Users/hopeb/OneDrive/Documents/Fourth Year 201920/ENVS802 LEEDS Programming for Social Scientists/Leeds-Geog-5995/sheepmovie.gif', images, duration = 5, fps=55)
+imageio.mimsave('C:/Users/hopeb/OneDrive/Documents/Fourth Year 201920/ENVS802 LEEDS Programming for Social Scientists/Leeds-Geog-5995/sheepmovie.gif', images, fps=55)
 
 
 root = tkinter.Tk()
@@ -140,8 +144,6 @@ menu_bar.add_cascade(label="Model", menu=model_menu)
 model_menu.add_command(label="Run model", command=run)
 model_menu.add_command(label="Quit model", command=quit)
 
-tkinter.mainloop()    
-    
-
+tkinter.mainloop()  
 
 

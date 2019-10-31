@@ -16,7 +16,7 @@ class Agent:
         self.y = random.randint(0, nrows-1)
         # Set the environment for the agents, which they will eat
         self.environment = environment 
-        # Set up a food store for all of the agents, which will be altered as they eat the environment
+        # Set up a food store for all of the agents, which will increase as they eat the environment
         self.store = 0
         # Set up an attribute used for sharing food with nearby neighbours
         self.agents = agents 
@@ -36,19 +36,20 @@ class Agent:
     # Defining eating patterns of agents
     def eat(self):
         # Set the agents to eat the environment when the environment's value is greater than 10
-        if self.environment[self.y][self.x] > 100:
-            self.environment[self.y][self.x] -= 100
+        if self.environment[self.y][self.x] > 10:
+            self.environment[self.y][self.x] -= 10
             self.store += 10 
-        else:
-            # if the store is equal to the environment's value
-            self.store += self.environment[self.y][self.x]  
-            # deplete the environment's value so it equals 0
-            self.environment[self.y][self.x] = 0
             
-        #If self-stores (of food) become too big, make the agents puke it back into the environment
-        if self.store>=10000:                               #if the self.stores are more than or equal to 10,000:
-            self.environment[self.y][self.x] += 60          #add 60 back to the environment and;
-            self.store=0     
+    # Create function to check if agents' food stores are full
+    def eaten_enough(self):
+        # if an agents store is greater than 500:
+        if self.store > 500:
+            # Set the variable 'full' to a value of 1
+            full = 1
+            # If agent's store is less than 500, set the 'full' variable to 0
+        else:
+            full = 0  
+        return full
     
     # Calculate distance between agents using pythagoras theorem   
     def distance_between(self, agent):
@@ -71,11 +72,8 @@ class Agent:
                 #(using round to keep whole numbers)
                 average = round(sum/2)
                 # Test whether this works by printing
-                print(self)
-                print("Sharing with agent", i, "my store is", self.store, "their store is", self.agents[i].store)
+                print("I am sharing with sheep", i, ", my store is", self.store, ", and their store is", self.agents[i].store)
                 # Give each agent the average between the nearby neighbours
                 self.store = average
                 # Give the neighbouring agent the average store also
                 self.agents[i].store = average
-
-
