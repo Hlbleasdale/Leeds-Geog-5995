@@ -16,10 +16,6 @@ import agentframework
 import csv
 # Import random library to shuffle the agents in a pseudo-random way
 import random
-# Import imageio library to save images and gifs
-import imageio 
-# Import os functions to aid reading and writing paths - for saving the gif
-import os
 
 # Initialise environment, firstly by creating an empty list
 environment = []
@@ -112,7 +108,7 @@ def update(frame_number):
     if total == (num_of_agents):
         # Stop the model and print 'stopping condition'
         carry_on = False
-        print ("Stopping condition")
+        print ("Stopping condition: all the sheep have eaten enough.")
         
 # Loop the animation until the number of iterations has been met
 # and until the stopping condition is brought in
@@ -136,19 +132,6 @@ def quit():
     global root
     root.destroy 
 
-# Save a gif of the model 
-# First set the filepath    
-png_dir = 'C:/Users/hopeb/OneDrive/Documents/Fourth Year 201920/ENVS802 LEEDS Programming for Social Scientists/Leeds-Geog-5995/'
-# Create an empty list, images, to later store the gif
-images = []
-# Create a for loop to append the resulting gif to the filepath
-for file_name in os.listdir(png_dir):
-    if file_name.endswith('png'):
-        file_path = os.path.join(png_dir, file_name)
-        images.append(imageio.imread(file_path))
-# Set a location and filename for it to save to
-imageio.mimsave('C:/Users/hopeb/OneDrive/Documents/Fourth Year 201920/ENVS802 LEEDS Programming for Social Scientists/Leeds-Geog-5995/FinalModel.gif', images, duration=10, fps=55)
-
 # When the code is run, python creates a window 'root' where the animation is displayed
 root = tkinter.Tk()
 # Set the title of the animation
@@ -169,4 +152,3 @@ model_menu.add_command(label="Quit model", command=quit)
 
 # The following line of code must go at the end - this runs the animation
 tkinter.mainloop()  
-
