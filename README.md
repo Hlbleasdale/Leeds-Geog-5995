@@ -27,5 +27,5 @@ the GUI should run. After the code has run, and a model box appears, click on Mo
 see the model. 
 
 <p align="center">
-  <img width="1000" height="800" src="Figure_ABM.png">
+  <img width="5000" height="600" src="Figure_ABM.png">
 </p>
