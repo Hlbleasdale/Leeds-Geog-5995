@@ -25,3 +25,7 @@ For the model to run as a GUI, the graphics settings on the Spyder IPython conso
 IPython Console > Graphics > Graphics Backend, and in the Backened dropdown list, the backend should be set to Tkinter. Then restart the console and 
 the GUI should run. After the code has run, and a model box appears, click on Model and a dropdown list should appear with Run or Quit. Choose Run to 
 see the model. 
+
+<p align="center">
+  <img width="800" height="800" src="FinalModel.gif">
+</p>
