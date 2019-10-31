@@ -1,6 +1,6 @@
 # Import random library to generate pseudo-random numbers 
 import random
-
+        
 # Create a class of agents 
 class Agent: 
     #Use the __init__ function to construct attributes of the agents
@@ -14,47 +14,43 @@ class Agent:
         # Select a random starting point for the agents 
         self.x = random.randint(0, ncols-1)
         self.y = random.randint(0, nrows-1)
-        #self.x = x
-        #if (x == None):
-        #    self.x = random.randint(0, ncols-1)
-        #else:
-        #    self.x = x
-        #self.y = y
-        #if (y == None):
-        #    self.y = random.randint(0, nrows-1)
-        #else:
-        #    self.y=y
         # Set the environment for the agents, which they will eat
         self.environment = environment 
         # Set up a food store for all of the agents, which will be altered as they eat the environment
         self.store = 0
         # Set up an attribute used for sharing food with nearby neighbours
         self.agents = agents 
-
-
-# Move agents with a conditional statement 
+      
+    # Move agents with a conditional statement 
     def move(self):
         if random.random() < 0.5:
-            self.y = (self.y + 1) % 100 # If random number is <0.5, add 1 to y axis of agent
+            self.y = (self.y + 1) % 300 # If random number is <0.5, add 1 to y axis of agent
         else:
-            self.y = (self.y - 1) % 100 # If random number >0.5, subtract 1 from y axis of agent 
+            self.y = (self.y - 1) % 300 # If random number >0.5, subtract 1 from y axis of agent 
 
         if random.random() <0.5:
-            self.x = (self.x + 1) % 100 # If random number is <0.5, add 1 to x axis of agent 
+            self.x = (self.x + 1) % 300 # If random number is <0.5, add 1 to x axis of agent 
         else:
-            self.x = (self.x - 1) % 100 # If random number is >0.5, subtract 1 from x axis of agent
+            self.x = (self.x - 1) % 300 # If random number is >0.5, subtract 1 from x axis of agent
 
-# Defining eating patterns of agents
+    # Defining eating patterns of agents
     def eat(self):
         # Set the agents to eat the environment when the environment's value is greater than 10
-        if self.environment[self.y][self.x] > 10:
-            self.environment[self.y][self.x] -= 10
+        if self.environment[self.y][self.x] > 100:
+            self.environment[self.y][self.x] -= 100
             self.store += 10 
+        else:
+            # if the store is equal to the environment's value
+            self.store += self.environment[self.y][self.x]  
+            # deplete the environment's value so it equals 0
+            self.environment[self.y][self.x] = 0
             
-# Calculate distance between agents using pythagoras theorem
-#    def distance_between(self, agents):
-#        return (((self.x - agents.x) **2) + ((self.y - agents.y)**2))**0.5
+        #If self-stores (of food) become too big, make the agents puke it back into the environment
+        if self.store>=10000:                               #if the self.stores are more than or equal to 10,000:
+            self.environment[self.y][self.x] += 60          #add 60 back to the environment and;
+            self.store=0     
     
+    # Calculate distance between agents using pythagoras theorem   
     def distance_between(self, agent):
         return (((self.x - agent.x) **2) + ((self.y - agent.y)
                  **2))**0.5
@@ -76,8 +72,10 @@ class Agent:
                 average = round(sum/2)
                 # Test whether this works by printing
                 print(self)
-                print("Sharing with agent", i, "my store", self.store, "their store", self.agents[i].store)
+                print("Sharing with agent", i, "my store is", self.store, "their store is", self.agents[i].store)
                 # Give each agent the average between the nearby neighbours
                 self.store = average
                 # Give the neighbouring agent the average store also
                 self.agents[i].store = average
+
+
