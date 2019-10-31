@@ -13,13 +13,14 @@ specifically deals with the agents - which represent sheep in this simulation. T
 * to initially place the sheep at a random starting point within the environment 
 * to move the sheep depending on the output of a (pseudo-)random conditional statement 
 * to make the sheep eat the environment and increase their food stores
+* to check whether the sheep have eaten enough and are full
 * to work out the distance (using pythagoras theorem) between nearby sheep and itself
 * to share food stores with nearby sheep within a given neighbourhood area (defined in the model)
 
 ### model.py
 The model.py file executes the Agent Based Model, the animation of the model, and displays this with a Graphical User Interface (GUI).
-It is also in the model.py program where the number of agents (sheep) can be altered, along with the number of iterations (times the sheep
-may move) and the boundary of the neighbourhood which affects how the agent (sheep) shares its food stores.
+In the model.py program, the number of agents (sheep) can be altered, along with the number of iterations (times the sheep
+may move) and the boundary of the neighbourhood which affects how the agent (sheep) shares its food stores. Also, model.py contains a stopping condition, where when all of the sheep have eaten enough and are full, the model stops. At this point, the IPython console should print **'Stopping condition - all of the sheep are full'**. 
 
 For the model to run as a GUI, the graphics settings on the Spyder IPython console should to be set to Tkinter. To do this: go to Tools > Preferences >
 IPython Console > Graphics > Graphics Backend, and in the Backened dropdown list, the backend should be set to Tkinter. Then restart the console and 
